@@ -1291,27 +1291,42 @@ namespace SpinnakerTest
         // Scale 구성 자동 설정 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            _usecheckbox = true;
-            ScaleSetting.IsEnabled = false;
+            try
+            {
+                _usecheckbox = true;
+                ScaleSetting.IsEnabled = false;
 
-            HighTemp.Clear();
-            LowTemp.Clear(); 
+                HighTemp.Clear();
+                LowTemp.Clear();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex); 
+            }
+            
         }
 
         // Scale 구성 수동 설정 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            _usecheckbox = false;
-            ScaleSetting.IsEnabled = true;
+            try
+            {
+                _usecheckbox = false;
+                ScaleSetting.IsEnabled = true;
 
-            HighTemp.Text = _maxtext.ToString();
-            LowTemp.Text = _mintext.ToString();
+                HighTemp.Text = _maxtext.ToString();
+                LowTemp.Text = _mintext.ToString();
 
-            _scalemaxtemp = _maxtext;
-            _scalemintemp = _mintext;
+                _scalemaxtemp = _maxtext;
+                _scalemintemp = _mintext;
 
-            _scalemaxraw = TempChange(_scalemaxtemp);
-            _scaleminraw = TempChange(_scalemintemp);
+                _scalemaxraw = TempChange(_scalemaxtemp);
+                _scaleminraw = TempChange(_scalemintemp);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
 
         }
 
@@ -1360,10 +1375,17 @@ namespace SpinnakerTest
         // 섭씨 온도를 uint 값으로 변환하여 반환 
         private int TempChange(int temp)
         {
-            double _temp = ((temp + 273.15) / mConvertOffsetVal);
+            try
+            {
+                double _temp = ((temp + 273.15) / mConvertOffsetVal);
 
-            return (int)_temp ;
-           
+                return (int)_temp;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return 0; 
+            }
         }
 
 
