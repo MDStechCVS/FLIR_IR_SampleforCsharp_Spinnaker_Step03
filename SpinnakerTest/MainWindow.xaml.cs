@@ -1338,7 +1338,14 @@ namespace SpinnakerTest
                 //HighTemp
                 if (HighTemp.Text != null)
                 {
+                    if (int.Parse(HighTemp.Text) <= _scalemintemp)
+                    {
+                        MessageBox.Show("최저 온도보다 큰 값을 입력해주세요! ");
+                        HighTemp.Clear();
+                        return;
+                    }
                     _scalemaxtemp = int.Parse(HighTemp.Text);
+
                 }
                 _scalemaxraw = TempChange(_scalemaxtemp);
             }
@@ -1348,7 +1355,7 @@ namespace SpinnakerTest
             }
 
         }
-        
+
         // Scale 구성 시 최저 온도 값 설정 
         private void SetLowTemp_Click(object sender, RoutedEventArgs e)
         {
@@ -1357,9 +1364,15 @@ namespace SpinnakerTest
                 // LowTemp
                 if (LowTemp.Text != null)
                 {
+                    if (int.Parse(LowTemp.Text) >= _scalemaxtemp)
+                    {
+                        MessageBox.Show("최저 온도보다 큰 값을 입력해주세요! ");
+                        LowTemp.Clear();
+                        return;
+                    }
                     _scalemintemp = int.Parse(LowTemp.Text);
                 }
-                _scaleminraw = TempChange(_scalemintemp); 
+                _scaleminraw = TempChange(_scalemintemp);
             }
             catch (Exception ex)
             {
