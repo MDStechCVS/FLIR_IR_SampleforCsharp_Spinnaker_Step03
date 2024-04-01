@@ -1366,7 +1366,7 @@ namespace SpinnakerTest
                 {
                     if (int.Parse(LowTemp.Text) >= _scalemaxtemp)
                     {
-                        MessageBox.Show("최저 온도보다 큰 값을 입력해주세요! ");
+                        MessageBox.Show("최고 온도보다 작은 값을 입력해주세요! ");
                         LowTemp.Clear();
                         return;
                     }
